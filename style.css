@@ -1,0 +1,82 @@
+body{
+	font-family: 'Lato', sans-serif;
+	background:#e0e0e0;
+}
+
+.white_bg{
+	background:#ffffff;
+}
+
+.butn_filter{
+    padding: 5px 0px;
+    border-radius: 5px;
+    background: #f5c679bf;
+    border: 0;
+    font-size: 15px;
+    margin: 10px;
+    width: 35%;
+    float: left;
+    margin: 10px 5px;
+	position:relative;
+	left:25px;
+}
+.butn_filter .active{
+    background:#de8c06bf;
+    border:0 !important;
+    outline:0 !important;
+}
+.butn_launch.active{
+    background:#de8c06bf !important;
+    border:0 !important;
+    outline:0;
+}
+.btn_launch_status.active{
+	background:#de8c06bf;
+    border:0 !important;
+    outline:0 !important;
+}
+.btn_landing_status.active{
+	background:#de8c06bf;
+    border:0 !important;
+    outline:0 !important;
+}
+button:focus{border:0 !important;
+    outline:0 !important;}
+.first_butn{
+    margin-right:20px;
+}
+.mat-card{  
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+	transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 16px;
+    border-radius: 4px;
+}
+.underline {
+       text-decoration: none; 
+       position: relative; 
+     }   
+
+.underline:after {
+        position: absolute;
+        content: '';
+        height: 2px;
+		bottom: -4px; 
+		margin: 0 auto;
+		  left: 0;
+        right: 0;
+		  width: 70%;
+		  background: #dedede;
+		 
+    }
+	.blu_color{
+		color:#1c4387;
+	}
+.image_style{
+	background: #e0e0e0;
+    padding: 10px;
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1200px) {
+  .butn_filter{
+	  left:12px !important;
+}

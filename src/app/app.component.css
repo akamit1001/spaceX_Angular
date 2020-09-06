@@ -1,0 +1,15 @@
+.butn_filter{
+    padding: 5px 20px;
+    border-radius: 5px;
+    background: #f5c679bf;
+    border: 0;
+    font-size: 15px;
+}
+.butn_filter:focus{
+    background:#de8c06bf;
+    border:0 !important;
+    outline:0;
+}
+.first_butn{
+    margin-right:20px;
+}

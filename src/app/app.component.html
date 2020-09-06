@@ -1,0 +1,70 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{ title }}</h1>
+    </div>
+      <div class="col-md-3 mt-4">
+        <mat-card>
+          <div class="row">
+              <div class="col-md-12">
+                  <h2>Filter</h2> 
+                  <p class="text-center">Launch Year</p>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter first_butn">2006</button>     <button class="butn_filter">2007</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter first_butn">2008</button>     <button class="butn_filter">2009</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter first_butn">2010</button>     <button class="butn_filter">2011</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter first_butn">2012</button>     <button class="butn_filter">2013</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter first_butn">2014</button>     <button class="butn_filter">2015</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter first_butn">2016</button>     <button class="butn_filter">2017</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter first_butn">2018</button>     <button class="butn_filter">2019</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                  <button class="butn_filter">2020</button>     
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                <p>Successful Launch</p>
+                <button class="butn_filter first_butn">True</button>     <button class="butn_filter">False</button>
+              </div>
+            <div class="col-md-12 text-center mt-3">
+              <p>Successful Landing</p>
+              <button class="butn_filter first_butn">True</button>     <button class="butn_filter">False</button>
+          </div>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-md-9">
+        
+          <div class="row">
+            <div class="col-md-3 mt-4" *ngFor="let dummyDatas of (dummyData | async)">
+              <mat-card>
+                <p><img src="{{dummyDatas.links.mission_patch}}" width="150" class="img-responsive"></p>
+                <p><b>fName</b> #{{dummyDatas.flight_number}}</p>
+                <p><b>Mission Ids:</b><span> </span></p>
+                <p><b>Launch Year: </b><span> {{dummyDatas.launch_year}}</span></p>
+                <p><b>Successful Launch: </b><span>{{dummyDatas.launch_success}}</span></p>
+                <p><b>Successful Landing: </b><span>{{dummyDatas.rocket.first_stage.cores[0].land_success}}</span></p>
+              </mat-card>
+               
+            </div>
+           
+        </div>
+        
+          
+      </div>
+  </div>
+
+</div>

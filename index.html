@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpaceX</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="mat-typography">
+  
+
+<div class="container-fluid">
+
+  <div class="row mat-card">
+    <div class="col-md-12">
+      <h2>SpaceX Launch Programs</h2>
+    </div>
+      <div class="col-md-3 mt-4">
+        
+          <div class="row mat-card m-0 white_bg">
+              <div class="col-md-12">
+                  <h4>Filter</h4> 
+                  <p class="text-center underline m-0">Launch Year</p>
+              </div>
+              <div class="col-md-12 text-center mt-2">
+                  <button class="butn_filter butn_launch ">2006</button>     <button class="butn_launch butn_filter">2007</button>
+              
+                  <button class="butn_filter  butn_launch">2008</button>     <button class="butn_filter butn_launch">2009</button>
+              
+                  <button class="butn_filter  butn_launch">2010</button>     <button class="butn_filter butn_launch">2011</button>
+              
+                  <button class="butn_filter  butn_launch">2012</button>     <button class="butn_filter butn_launch">2013</button>
+              
+                  <button class="butn_filter  butn_launch">2014</button>     <button class="butn_filter butn_launch">2015</button>
+              
+                  <button class="butn_filter  butn_launch">2016</button>     <button class="butn_filter butn_launch">2017</button>
+              
+                  <button class="butn_filter  butn_launch">2018</button>     <button class="butn_filter butn_launch">2019</button>
+              
+                  <button class="butn_filter butn_launch">2020</button> <button class="butn_filter" style="visibility:hidden;">2021</button>    
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                <p class="underline mb-2">Successful Launch</p>
+                <button class="butn_filter btn_launch_status ">True</button>     <button class="butn_filter btn_launch_status">False</button>
+              </div>
+            <div class="col-md-12 text-center mt-3">
+              <p class="underline mb-2">Successful Landing</p>
+              <button class="butn_filter btn_landing_status ">True</button>     <button class="butn_filter btn_landing_status">False</button>
+          </div>
+          </div>
+        
+      </div>
+      <div class="col-md-9">
+        
+          <div class="row" id="content">
+          		
+           
+        </div>
+        
+          
+      </div>
+  </div>
+
+</div>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+$(".butn_launch").on('click', function(){
+    $(this).siblings().removeClass('active');
+    $(this).toggleClass('active');
+	get_content();
+})
+$(".btn_launch_status").on('click', function(){
+    $(this).siblings().removeClass('active')
+    $(this).toggleClass('active');
+	get_content();
+})
+$(".btn_landing_status").on('click', function(){
+    $(this).siblings().removeClass('active')
+    $(this).toggleClass('active');
+	get_content();
+})
+
+
+</script>
+
+
+<script>
+function get_content()
+{
+  let url = "https://api.spacexdata.com/v3/launches?limit=100";
+  
+  let launch = $(".butn_launch.active").html();
+  if(launch != undefined)
+  url+="&launch_year="+launch;
+  
+  let launch_success = $(".btn_launch_status.active").html();
+  if(launch_success!=undefined)
+  url+="&launch_success="+launch_success.toLowerCase();
+  
+  
+  let land_success = $(".btn_landing_status.active").html();
+  if(land_success!=undefined)
+  url+="&land_success="+land_success.toLowerCase();
+  //alert(url);
+  
+  let html='';
+    $.ajax({url: url, success: function(result){
+	$.each(result, function(key,value) {
+      html+='<div class="col-md-3 mt-4"><div class="mat-card w-100 p-2 white_bg">';
+	  html+='<p class="p-2"><img src="'+value.links.mission_patch+'" class="img-responsive w-100 image_style"></p>';
+	  html+='<p class="pl-2 blu_color"><b>fName:  #'+value.flight_number+' </b></p>';
+	  html+='<p class="pl-2"><b>Mission Ids:</b><span class="blu_color">'+get_mission(value.mission_id)+'</span></p>';
+	  html+='<p class="pl-2"><b>Launch Year: </b><span class="blu_color"> '+value.launch_year+'</span></p>';
+	  html+='<p class="pl-2"><b>Successful Launch:</b><span class="blu_color"> '+value.launch_success+'</span></p>';
+	  html+='<p class="pl-2"><b>Successful Landing: </b><span class="blu_color"> '+value.rocket.first_stage.cores[0].land_success+'</span></p></div></div>';
+});
+   $("#content").html(html);
+  }});
+}
+
+$(document).ready(function(){
+get_content();
+});
+
+function get_mission(ids)
+{
+  let id='';
+  $.each(ids, function(key,value) {
+  id +=" "+value;
+});
+return id;
+}
+
+</script>
+
+</body>
+</html>
+
