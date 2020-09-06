@@ -1,66 +1,49 @@
-<div class="container-fluid">
+<div class="container-fluid body_colr">
 
   <div class="row">
     <div class="col-md-12">
-      <h1>{{ title }}</h1>
+      <h1 class="mt-3 mb-1">{{ title }}</h1>
     </div>
       <div class="col-md-3 mt-4">
         <mat-card>
           <div class="row">
-              <div class="col-md-12">
-                  <h2>Filter</h2> 
-                  <p class="text-center">Launch Year</p>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter first_butn">2006</button>     <button class="butn_filter">2007</button>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter first_butn">2008</button>     <button class="butn_filter">2009</button>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter first_butn">2010</button>     <button class="butn_filter">2011</button>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter first_butn">2012</button>     <button class="butn_filter">2013</button>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter first_butn">2014</button>     <button class="butn_filter">2015</button>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter first_butn">2016</button>     <button class="butn_filter">2017</button>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter first_butn">2018</button>     <button class="butn_filter">2019</button>
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                  <button class="butn_filter">2020</button>     
-              </div>
-              <div class="col-md-12 text-center mt-3">
-                <p>Successful Launch</p>
-                <button class="butn_filter first_butn">True</button>     <button class="butn_filter">False</button>
-              </div>
-            <div class="col-md-12 text-center mt-3">
-              <p>Successful Landing</p>
-              <button class="butn_filter first_butn">True</button>     <button class="butn_filter">False</button>
+            <div class="col-md-12">
+              <h3>Filter</h3> 
+              <p class="text-center underline m-0">Launch Year</p>
           </div>
+          <div class="col-md-12 text-center mt-2">
+              <button class="butn_filter butn_launch" *ngFor="let button of buttons" (click)="buttonClick(button)">{{button}}</button>
+          
+            </div>
+          <div class="col-md-12 text-center mt-3">
+            <p class="underline mb-2">Successful Launch</p>
+            <button class="butn_filter btn_launch_status ">True</button>     <button class="butn_filter btn_launch_status">False</button>
+          </div>
+        <div class="col-md-12 text-center mt-3">
+          <p class="underline mb-2">Successful Landing</p>
+          <button class="butn_filter btn_landing_status ">True</button>     <button class="butn_filter btn_landing_status">False</button>
+      </div>
           </div>
         </mat-card>
       </div>
       <div class="col-md-9">
         
           <div class="row">
-            <div class="col-md-3 mt-4" *ngFor="let dummyDatas of (dummyData | async)">
+            <div class="col-md-6 col-lg-3 mt-4" *ngFor="let dummyDatas of (dummyData | async)">
               <mat-card>
-                <p><img src="{{dummyDatas.links.mission_patch}}" width="150" class="img-responsive"></p>
-                <p><b>fName</b> #{{dummyDatas.flight_number}}</p>
-                <p><b>Mission Ids:</b><span> </span></p>
-                <p><b>Launch Year: </b><span> {{dummyDatas.launch_year}}</span></p>
-                <p><b>Successful Launch: </b><span>{{dummyDatas.launch_success}}</span></p>
-                <p><b>Successful Landing: </b><span>{{dummyDatas.rocket.first_stage.cores[0].land_success}}</span></p>
+                <p><img src="{{dummyDatas.links.mission_patch}}" class="img-responsive w-100 image_style"></p>
+                <p class="pl-2 blu_color"><b>fName</b> #{{dummyDatas.flight_number}}</p>
+                <p class="pl-2"><b>Mission Ids: </b><span class="blu_color">{{dummyDatas.mission_id[0]}}</span></p>
+                <p class="pl-2"><b>Launch Year: </b><span class="blu_color"> {{dummyDatas.launch_year}}</span></p>
+                <p class="pl-2"><b>Successful Launch: </b><span class="blu_color">{{dummyDatas.launch_success}}</span></p>
+                <p class="pl-2"><b>Successful Landing: </b><span class="blu_color">{{dummyDatas.rocket.first_stage.cores[0].land_success}}</span></p>
               </mat-card>
                
             </div>
            
+        </div>
+        <div class="row text-center">
+            <h2 class="w-100 mt-3"><b>Developed By</b>: {{ developerName }} </h2>
         </div>
         
           
